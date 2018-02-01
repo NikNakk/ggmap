@@ -351,13 +351,13 @@ get_googlemap <- function(
   map <- aperm(map, c(2, 1, 3))
 
   # format file
+  mapd <- dim(map)
   if(color == "color"){
-    map <- apply(map, 2, rgb)
+    map <- rgb(map[,,1], map[,,2], map[,,3], map[,,4])
   } else if(color == "bw"){
-  	mapd <- dim(map)
-  	map <- gray(.30 * map[,,1] + .59 * map[,,2] + .11 * map[,,3])
-  	dim(map) <- mapd[1:2]
+  	map <- gray(.30 * map[,,1] + .59 * map[,,2] + .11 * map[,,3], alpha = map[,,4)
   }
+  dim(map) <- mapd[1:2]
   map <- matrix(map, nrow = scale*size[2], ncol = scale*size[1])
   class(map) <- c("ggmap","raster")
   # plot(map)
