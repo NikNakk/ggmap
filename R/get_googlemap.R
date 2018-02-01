@@ -355,7 +355,7 @@ get_googlemap <- function(
   if(color == "color"){
     map <- rgb(map[,,1], map[,,2], map[,,3], map[,,4])
   } else if(color == "bw"){
-  	map <- gray(.30 * map[,,1] + .59 * map[,,2] + .11 * map[,,3], alpha = map[,,4)
+  	map <- gray(.30 * map[,,1] + .59 * map[,,2] + .11 * map[,,3], alpha = map[,,4])
   }
   dim(map) <- mapd[1:2]
   map <- matrix(map, nrow = scale*size[2], ncol = scale*size[1])
