@@ -94,8 +94,15 @@ gglocator <- function(n = 1, message = FALSE,
   # get the x.range and y.range from ggplot
   plot_info <- ggplot_build(object)
   if("layout" %in% names(plot_info)){
-    ranges <- plot_info$layout$panel_ranges[[1]]
-  } else{
+    if ("panel_ranges" %in% names(plot_info$layout)) {
+      ranges <- plot_info$layout$panel_ranges[[1]]
+    } else {
+      ranges <- list(
+        x.range = plot_info$layout$panel_scales_x[[1]]$range$range,
+        y.range = plot_info$layout$panel_scales_y[[1]]$range$range
+      )
+    }
+  } else {
     ranges <- plot_info$panel$ranges[[1]]
   }
   xrng <- ranges$x.range

@@ -20,7 +20,7 @@ coord_map2 <- function(){
   trans_env <- new.env(parent = environment(trans_fun))
   assign("mproject", mproject2, trans_env)
   environment(trans_fun) <- trans_env
-  train_fun <- get("f", environment(CoordMap$train))
+  train_fun <- get("trans_fun", environment(CoordMap$train))
   train_env <- new.env(parent = environment(train_fun))
   assign("mproject", mproject2, train_env)
   environment(train_fun) <- train_env
